@@ -9,41 +9,41 @@
     "intervalGetNewCookie": 1440,
     "notes": "time the system automatically retrieves new cookies from email/password, unit is minute, if you set null, the system will not automatically retrieve new cookies, it saves you from having to manually change new cookies every time it expires. recommended set to 1440 (1day) or 4320 (3day).TO BE ABLE TO USE THIS FEATURE YOU NEED TO ENTER THE ACCOUNT PASSWORD ABOVE"
   },
-  "antiInbox": false,
+  "antiInbox": true,
   "language": "en",
   "notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
   "adminOnly": {
-    "enable": false,
+    "enable": true,
     "ignoreCommand": []
   },
   "developerOnly": {
-    "enable": false,
+    "enable": true,
     "ignoreCommand": []
   },
   "vipOnly": {
-    "enable": false,
+    "enable": true,
     "ignoreCommand": []
   },
   "adminBot": [
-    "61592031400983",
-    "61589129806243"
+    "61593975646161",
+    "61595102226262"
   ],
   "developer": [
-    "61592031400983",
-    "61589129806243"
+    "61595102226262",
+    "61593975646161"
   ],
   "vipuser": [
-    "61592031400983",
-    "61589129806243"
+    "61595102226262",
+    "61593975646161"
   ],
   "premium": [
-    "61592031400983",
-    "61589129806243"
+    "61595102226262",
+    "61593975646161"
   ],
   "creator": [
-    "61592031400983",
-    "61575452277462",
-    "61589129806243"
+    "61595102226262",
+    "61593975646161",
+    "61595102226262"
   ],
   "reactBy": {
     "delete": [
@@ -69,8 +69,8 @@
     "whiteListIds": [],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
-  "nickNameBot": "X69X BOT V3",
-  "prefix": ")",
+  "nickNameBot": "mathar_bot💔🙄",
+  "prefix": ".",
   "database": {
     "type": "mongodb",
     "uriMongodb": "mongodb+srv://Hinata:W2fNh.H9iWFU22F@cluster0.cyattib.mongodb.net/OZADNOOB1?retryWrites=true&w=majority&appName=Cluster0",
