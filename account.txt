@@ -37,7 +37,7 @@
     },
     {
         "key": "ps_n",
-        "value": "1",
+        "value": "1"
         "domain": "facebook.com",
         "path": "/",
         "hostOnly": false,
