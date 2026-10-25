@@ -1,49 +1,51 @@
-/**
- * @author NTKhang
- * ! The source code is written by NTKhang, please don't change the author's name everywhere. Thank you for using
- * ! Official source code: https://github.com/ntkhang03/Goat-Bot-V2
- * ! If you do not download the source code from the above address, you are using an unknown version and at risk of having your account hacked
- *
- * English:
- * ! Please do not change the below code, it is very important for the project.
- * It is my motivation to maintain and develop the project for free.
- * ! If you change it, you will be banned forever
- * Thank you for using
- *
- * Vietnamese:
- * ! Vui lòng không thay đổi mã bên dưới, nó rất quan trọng đối với dự án.
- * Nó là động lực để tôi duy trì và phát triển dự án miễn phí.
- * ! Nếu thay đổi nó, bạn sẽ bị cấm vĩnh viễn
- * Cảm ơn bạn đã sử dụng
- */
-
 const { spawn } = require("child_process");
 const log = require("./logger/log.js");
 
-function startProject() {
-	const child = spawn("node", ["EryXenX.js"], {
-		cwd: __dirname,
-		stdio: "inherit",
-		shell: true
-	});
+let restartCount = 0;
+let lastRestartTime = Date.now();
+const BASE_DELAY = 3000;
+const MAX_DELAY = 60000;
 
-	child.on("close", (code) => {
-		if (code == 2) {
-			log.info("Restarting Project...");
-			startProject();
-		}
-	});
+function getRestartDelay() {
+  const delay = Math.min(BASE_DELAY * Math.pow(1.5, restartCount), MAX_DELAY);
+  return Math.round(delay);
+}
+
+function startProject() {
+  const now = Date.now();
+  if (now - lastRestartTime > 10 * 60 * 1000) {
+    restartCount = 0;
+  }
+  lastRestartTime = now;
+
+  const child = spawn("node", ["X69X.js"], {
+    cwd: __dirname,
+    stdio: "inherit",
+    shell: false,
+    env: process.env
+  });
+
+  child.on("close", (code) => {
+    if (code === 2) {
+      restartCount = 0;
+      log.info("INDEX", "Restarting bot (requested via restart command)");
+      setTimeout(startProject, 3000);
+    } else if (code !== 0) {
+      restartCount++;
+      const delay = getRestartDelay();
+      log.info("INDEX", `Bot crashed (code ${code}). Restarting in ${delay}ms... (attempt ${restartCount})`);
+      setTimeout(startProject, delay);
+    } else {
+      log.info("INDEX", "Bot shut down normally");
+    }
+  });
+
+  child.on("error", (err) => {
+    log.err("INDEX", "Failed to start X69X.js:", err.message);
+    restartCount++;
+    const delay = getRestartDelay();
+    setTimeout(startProject, delay);
+  });
 }
 
 startProject();
-const express = require('express');
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Bot is running!');
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Uptime server running on port ${PORT}`);
-});
